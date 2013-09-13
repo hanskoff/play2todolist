@@ -9,7 +9,10 @@ object Application extends Controller {
   import models.Task
 
   val taskForm = Form(
-    "label" -> nonEmptyText
+    tuple(
+      "label" -> nonEmptyText,
+      "label1" -> nonEmptyText
+    )
   )
 
   def index = Action {
@@ -23,8 +26,8 @@ object Application extends Controller {
   def newTask = Action { implicit request =>
     taskForm.bindFromRequest.fold(
       errors => BadRequest(views.html.index(Task.all(), errors)),
-      label => {
-        Task.create(label)
+      value => {
+        Task.create(value._1, value._2)
         Redirect(routes.Application.tasks)
       }
     )

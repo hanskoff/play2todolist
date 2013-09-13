@@ -6,6 +6,9 @@ This file will be packaged with your application, when using `play dist`.
 from http://www.playframework.com/documentation/2.1.x/ScalaTodoList
 
 TODO
-increase form to 2 input fileds
 add picutres to add
 add twitter bootstrap
+add 3 input fileds :)
+
+DONE
+increase form to 2 input fileds

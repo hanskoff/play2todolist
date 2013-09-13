@@ -1,6 +1,6 @@
 package models
 
-case class Task(id: Long, label: String)
+case class Task(id: Long, label: String, label1:String)
 
 object Task {
 
@@ -9,8 +9,9 @@ object Task {
 
   val task = {
     get[Long]("id") ~
-      get[String]("label") map {
-      case id~label => Task(id, label)
+      get[String]("label") ~
+      get[String]("label1") map {
+      case id~label~label1 => Task(id, label, label1)
     }
   }
 
@@ -21,10 +22,11 @@ object Task {
     SQL("select * from task").as(task *)
   }
 
-  def create(label: String) {
+  def create(label: String, label1: String) {
     DB.withConnection { implicit c =>
-      SQL("insert into task (label) values ({label})").on(
-        'label -> label
+      SQL("insert into task (label, label1) values ({label}, {label1})").on(
+        'label -> label,
+        'label1 -> label1
       ).executeUpdate()
     }
   }
