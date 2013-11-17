@@ -7,13 +7,13 @@ from http://www.playframework.com/documentation/2.1.x/ScalaTodoList
 
 TODO
 ====
-add picutres to add
-add twitter bootstrap
+- add picutres to add
+- add twitter bootstrap
 
 DONE
 ====
-increase form to 2 input fileds
-add 3 input fileds :)
+- increase form to 2 input fileds
+- add 3 input fileds :)
 
 
 
