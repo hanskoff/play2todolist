@@ -39,4 +39,18 @@ object Application extends Controller {
     Task.delete(id)
     Redirect(routes.Application.tasks)
   }
+
+  def upload = Action(parse.multipartFormData) { request =>
+    request.body.file("picture").map { picture =>
+      import java.io.File
+      val filename = picture.filename
+      val contentType = picture.contentType
+      picture.ref.moveTo(new File("/tmp/picture"))
+      Ok("File uploaded")
+    }.getOrElse {
+      Redirect(routes.Application.index).flashing(
+        "error" -> "Missing file"
+      )
+    }
+  }
 }
